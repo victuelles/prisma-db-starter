@@ -1,0 +1,22 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  //only for Mysql
+  //previewFeatures = ["fullTextIndex", "fullTextSearch"]
+}
+
+datasource db {
+  //provider = "mysql"
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Task {
+  id        String   @id @default(uuid())
+  title     String
+  //only for Mysql
+  // @@fulltext([title])
+}
